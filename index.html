@@ -1,25 +1,40 @@
-<DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>step 1</title>
-    <style>
-        html, body {
-            padding: 0;
-            margin: 0;
-            height: 100%;
-            overflow: hidden;
-            user-select: none;
-        }
-    </style>
+    <title>step 2</title>
+    <style...>
     <script>
-        console.log('ok')
+        class Space {
+            moment = []
+            next = []
+
+            constructor(width, height, seed) {
+                this.seeder(width, height, seed)
+                this.next = Array.from(this.moment)
+            }
+
+            seeder(width, height, seed) {
+                for (let y = 0; y < width; y++) {
+                    this.moment[y] = []
+                    for (let x = 0; x < height; x++) {
+                        this.moment[y][x] = seed(x,y);
+                    }
+                }
+            }
+        }
+        
+        const test = new Space(3, 3, (x, y) => {
+            return (x % 2 === 0 && y % 2 === 0);
+        });
+        console.log(test.moment)
+        document.addEventListener('DOMContentLoaded' , function () {
+            const elem = document.getElementById('code');
+            elem.innerText = JSON.stringify(test.moment, ' ', 2);
+        });
     </script>
 </head>
-</body>
-<h1>H1</h1>
-<h2>H2</h2>
-<p>text text text</p>
-<p><a href="https://google.com">link</a></p>
+<body>
+<h1>Log</h1>
+<pre id="code"></pre>
 </body>
 </html>
